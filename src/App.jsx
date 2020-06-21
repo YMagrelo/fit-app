@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.scss';
+import { connect } from 'react-redux';
 import { Heading } from './components/Heading';
+import { getClubsThunk } from './redux/reducer';
 
 const App = () => (
   <div className="app-wrapper">
@@ -11,4 +13,12 @@ const App = () => (
   </div>
 );
 
-export default App;
+const mapStateToProps = state => ({
+  clubsList: state.clubsList,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getClubs: () => dispatch(getClubsThunk()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
