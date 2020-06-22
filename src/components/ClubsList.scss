@@ -1,0 +1,16 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px;
+}
+
+.item {
+  &__logo {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  &__title {
+    text-align: center;
+  }
+}

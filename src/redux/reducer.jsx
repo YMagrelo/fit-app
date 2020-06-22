@@ -24,8 +24,9 @@ const setClubs = payload => ({
   payload,
 });
 
-export const getClubsThunk = () => async(dispatch) => {
-  const data = await getClubs();
-  debugger;
-  dispatch(setClubs(data));
+export const getClubsThunk = () => (dispatch) => {
+  getClubs()
+    .then((data) => {
+      dispatch(setClubs(data));
+    });
 };
