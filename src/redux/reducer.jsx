@@ -1,17 +1,25 @@
 import { getClubs } from '../api';
 
-const GET_CLUBS = 'GET_CLUBS';
+const SET_CLUBS = 'SET_CLUBS';
+const SET_CITIES = 'SET_SITIES';
 
 const initialState = {
   clubsList: [],
+  cities: [],
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_CLUBS:
+    case SET_CLUBS:
       return {
         ...state,
         clubsList: action.payload,
+      };
+
+    case SET_CITIES:
+      return {
+        ...state,
+        cities: action.payload,
       };
 
     default:
@@ -20,13 +28,21 @@ export const reducer = (state = initialState, action) => {
 };
 
 const setClubs = payload => ({
-  type: GET_CLUBS,
+  type: SET_CLUBS,
   payload,
 });
 
-export const getClubsThunk = () => (dispatch) => {
-  getClubs()
-    .then((data) => {
-      dispatch(setClubs(data));
-    });
+const setCities = payload => ({
+  type: SET_CITIES,
+  payload,
+});
+
+export const getClubsThunk = () => async(dispatch) => {
+  const data = await getClubs();
+
+  dispatch(setClubs(data));
+  const setOfCities = new Set(data.map(club => club.city.title));
+  const cities = [...setOfCities];
+
+  dispatch(setCities(cities));
 };
