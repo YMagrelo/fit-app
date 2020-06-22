@@ -2,10 +2,12 @@ import { getClubs } from '../api';
 
 const SET_CLUBS = 'SET_CLUBS';
 const SET_CITIES = 'SET_SITIES';
+const SET_ACTIVITIES = 'SET_ACTIVITIES';
 
 const initialState = {
   clubsList: [],
   cities: [],
+  activities: [],
 };
 
 export const reducer = (state = initialState, action) => {
@@ -20,6 +22,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         cities: action.payload,
+      };
+
+    case SET_ACTIVITIES:
+      return {
+        ...state,
+        activities: action.payload,
       };
 
     default:
@@ -37,12 +45,22 @@ const setCities = payload => ({
   payload,
 });
 
+const setActivities = payload => ({
+  type: SET_ACTIVITIES,
+  payload,
+});
+
 export const getClubsThunk = () => async(dispatch) => {
   const data = await getClubs();
 
   dispatch(setClubs(data));
-  const setOfCities = new Set(data.map(club => club.city.title));
-  const cities = [...setOfCities];
+
+  const cities = [...new Set(data.map(club => club.city.title))];
+  const activities = [...new Set(data
+    .map(club => club.activity
+      .map(activity => activity.slug))
+    .flat())];
 
   dispatch(setCities(cities));
+  dispatch(setActivities(activities));
 };
