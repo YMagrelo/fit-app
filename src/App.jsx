@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import './App.scss';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Heading } from './components/Heading';
 import { getClubsThunk } from './redux/reducer';
 import { ClubsList } from './components/ClubsList';
+import { clubsListPropTypes } from './propTypesConstant';
 
 const App = (props) => {
   const { clubsList, getClubs } = props;
@@ -31,3 +33,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+App.propTypes = {
+  getClubs: PropTypes.func.isRequired,
+  clubsList: clubsListPropTypes.isRequired,
+};
+
+

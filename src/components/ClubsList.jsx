@@ -1,5 +1,6 @@
 import React from 'react';
 import './ClubsList.scss';
+import { clubsListPropTypes, clubPropTypes } from '../propTypesConstant';
 
 export const ClubsList = (props) => {
   const { clubsList } = props;
@@ -24,4 +25,12 @@ const Club = (props) => {
       <p className="item__title">{club.title_short}</p>
     </div>
   );
+};
+
+ClubsList.propTypes = {
+  clubsList: clubsListPropTypes.isRequired,
+};
+
+Club.propTypes = {
+  club: clubPropTypes.isRequired,
 };
