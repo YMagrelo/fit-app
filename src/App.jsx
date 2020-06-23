@@ -22,7 +22,14 @@ const App = (props) => {
 
   if (selectedCity) {
     filteredClubs = clubsList.filter(club => club.city.title === selectedCity);
+  } else if (selectedActivity) {
+    filteredClubs = clubsList
+      .filter(club => club.activity
+        .some(action => action.slug === selectedActivity));
+  } else if (selectedCity && selectedActivity) {
+    alert(selectedCity, selectedActivity);
   }
+  debugger;
 
   return (
     <div className="app-wrapper">
@@ -58,4 +65,5 @@ App.propTypes = {
   getClubs: PropTypes.func.isRequired,
   clubsList: clubsListPropTypes.isRequired,
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activities: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
