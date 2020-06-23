@@ -21,16 +21,20 @@ const App = (props) => {
   let filteredClubs = clubsList;
 
   if (selectedCity) {
+    // filtering by city
     filteredClubs = clubsList.filter(club => club.city.title === selectedCity);
   } else if (selectedActivity) {
+    // filtering by activity
     filteredClubs = clubsList
       .filter(club => club.activity
         .some(action => action.slug === selectedActivity));
   }
 
   if (selectedActivity && selectedCity) {
-    filteredClubs = clubsList.filter(club => club.city.title === selectedCity && club.activity.some(action => action.slug === selectedActivity));
-    console.log(filteredClubs);
+    // filtering by city & activity
+    filteredClubs = clubsList
+      .filter(club => club.city.title === selectedCity && club.activity
+        .some(action => action.slug === selectedActivity));
   }
 
   return (

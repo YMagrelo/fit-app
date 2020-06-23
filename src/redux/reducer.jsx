@@ -54,8 +54,9 @@ export const getClubsThunk = () => async(dispatch) => {
   const data = await getClubs();
 
   dispatch(setClubs(data));
-
+  // set unique value of cities
   const cities = [...new Set(data.map(club => club.city.title))];
+  // set unique value of activities
   const activities = [...new Set(data
     .map(club => club.activity
       .map(activity => activity.slug))
