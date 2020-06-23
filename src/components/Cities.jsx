@@ -1,6 +1,7 @@
 import React from 'react';
 import './Cities.scss';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export const Cities = (props) => {
   const { cities, setSelectedCity, selectedCity } = props;
@@ -12,7 +13,7 @@ export const Cities = (props) => {
         <button
           type="button"
           className="citiesItem citiesItem--reset"
-          onClick={() => setSelectedCity(null)}
+          onClick={() => setSelectedCity('')}
         >
 Reset
         </button>
@@ -20,7 +21,8 @@ Reset
       {cities.map(city => (
         <button
           type="button"
-          className="citiesItem"
+          className={classNames('citiesItem',
+            { isActive: selectedCity === city })}
           onClick={() => setSelectedCity(city)}
           key={city}
         >

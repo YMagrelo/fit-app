@@ -23,12 +23,8 @@
   background:indianred;
 }
 
-.citiesItem:hover {
-  background:rgba($color: #000000, $alpha: 0.15);
-  border-bottom: 0.5px solid #ABABAB;
-}
-
-.citiesItem  .isActive {
+.citiesItem:hover,
+.citiesItem.isActive {
   background:rgba($color: #000000, $alpha: 0.15);
   border-bottom: 0.5px solid #ABABAB;
 }

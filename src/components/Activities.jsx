@@ -13,7 +13,7 @@ export const Activities = (props) => {
         <button
           type="button"
           className="activitiesItem activitiesItem--reset"
-          onClick={() => setSelectedActivity(null)}
+          onClick={() => setSelectedActivity('')}
         >
 Reset
         </button>
@@ -21,7 +21,8 @@ Reset
       {activities.map(activity => (
         <button
           type="button"
-          className="activitiesItem"
+          className={classNames('activitiesItem',
+            { isActive: activity === selectedActivity })}
           onClick={() => setSelectedActivity(activity)}
           key={activity}
         >

@@ -11,8 +11,8 @@ import { Activities } from './components/Activities';
 
 const App = (props) => {
   const { clubsList, getClubs, cities, activities } = props;
-  const [selectedCity, setSelectedCity] = useState(null);
-  const [selectedActivity, setSelectedActivity] = useState(null);
+  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedActivity, setSelectedActivity] = useState('');
 
   useEffect(() => {
     getClubs();
@@ -26,10 +26,12 @@ const App = (props) => {
     filteredClubs = clubsList
       .filter(club => club.activity
         .some(action => action.slug === selectedActivity));
-  } else if (selectedCity && selectedActivity) {
-    alert(selectedCity, selectedActivity);
   }
-  debugger;
+
+  if (selectedActivity && selectedCity) {
+    filteredClubs = clubsList.filter(club => club.city.title === selectedCity && club.activity.some(action => action.slug === selectedActivity));
+    console.log(filteredClubs);
+  }
 
   return (
     <div className="app-wrapper">
