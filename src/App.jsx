@@ -69,7 +69,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 App.propTypes = {
   getClubs: PropTypes.func.isRequired,
-  clubsList: clubsListPropTypes.isRequired,
+  clubsList: clubsListPropTypes,
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   activities: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+App.defaultProps = {
+  clubsList: PropTypes.array,
 };

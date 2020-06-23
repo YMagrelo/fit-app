@@ -1,5 +1,7 @@
 import React from 'react';
 import './ClubsList.scss';
+import PropTypes from 'prop-types';
+
 import { clubsListPropTypes, clubPropTypes } from '../propTypesConstant';
 
 export const ClubsList = (props) => {
@@ -7,9 +9,11 @@ export const ClubsList = (props) => {
 
   return (
     <div className="list">
+
       {clubsList.map(club => (
         <Club club={club} key={club.title} />
       ))}
+
     </div>
   );
 };
@@ -28,9 +32,17 @@ const Club = (props) => {
 };
 
 ClubsList.propTypes = {
-  clubsList: clubsListPropTypes.isRequired,
+  clubsList: clubsListPropTypes,
 };
 
 Club.propTypes = {
-  club: clubPropTypes.isRequired,
+  club: clubPropTypes,
+};
+
+ClubsList.defaultProps = {
+  clubsList: PropTypes.array,
+};
+
+Club.defaultProps = {
+  club: PropTypes.object,
 };
