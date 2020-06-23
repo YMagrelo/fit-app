@@ -1,6 +1,7 @@
 import React from 'react';
 import './Activities.scss';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export const Activities = (props) => {
   const { activities, selectedActivity, setSelectedActivity } = props;
